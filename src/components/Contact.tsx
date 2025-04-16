@@ -1,87 +1,64 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Simple form validation
-    if (!formData.name || !formData.email || !formData.message) {
-      setError("Please fill in all fields.");
-      return;
-    }
-
-    // Simulate success
-    setSubmitted(true);
-    setError("");
-    setFormData({ name: "", email: "", message: "" });
-  };
-
   return (
-    <section className="my-12 px-4">
-      <h2 className="text-3xl font-semibold text-blue-600 mb-4">Contact</h2>
+    <section className="shadow-lg rounded-xl p-8 glow-effect">
+      <h2 className="text-4xl font-bold text-[#05fcec] mb-4 border-b pb-2 border-blue-200">
+        Contact
+      </h2>
 
-      {submitted && (
-        <div className="mb-4 p-4 bg-green-100 text-green-700 border border-green-300 rounded">
-          Your message has been sent!
+      <div className="flex flex-col md:flex-row gap-8 mt-8">
+        {/* Left - Contact Info */}
+        <div className="md:w-1/2 space-y-4 text-[#faf8f1]">
+          <p className="text-xl">Phone: 0919 722 7642</p>
+          <p className="text-xl">Email: rhoalpadilla10@gmail.com</p>
         </div>
-      )}
 
-      {error && (
-        <div className="mb-4 p-4 bg-red-100 text-red-700 border border-red-300 rounded">
-          {error}
+        {/* Right - Contact Form */}
+        <div className="md:w-1/2 space-y-4">
+          <p className="text-lg font-semibold text-[#05fcec]">
+            Send me a message!
+          </p>
+          <form
+            action="https://formsubmit.co/rhoalpadilla10@gmail.com"
+            method="POST"
+            className="space-y-4"
+          >
+            {/* Prevent captcha */}
+            <input type="hidden" name="_captcha" value="false" />
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md text-black placeholder-gray-600"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md text-black placeholder-gray-600"
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md text-black placeholder-gray-600"
+              rows={4}
+            ></textarea>
+            <button
+              type="submit"
+              className="bg-[#faf8f1] text-black px-6 py-2 rounded-md hover:bg-[#05fcec] transition"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-4 max-w-md">
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Your Name"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md"
-        />
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Your Email"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md"
-        />
-        <textarea
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Your Message"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md"
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition"
-        >
-          Send Message
-        </button>
-      </form>
+      </div>
     </section>
   );
 };
