@@ -34,7 +34,7 @@ const AboutMe = () => {
         </div>
 
         {/* Right txt */}
-        <div className="md:w-1/3 text-left text-[#faf8f1] mt-6 md:mt-0">
+        <div className="md:w-1/3 text-left text-white mt-6 md:mt-0">
           <p className="mb-4">
             I chose to pursue Information Technology because I find it both fun
             and fulfilling—especially when it comes to{" "}
